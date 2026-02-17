@@ -67,6 +67,7 @@ public class CarController {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
             car.brake(brake);
+            IO.println(car.getCurrentSpeed());
         }
     }
     void start() {
