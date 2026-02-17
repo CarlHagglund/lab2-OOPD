@@ -51,10 +51,23 @@ public class CarController {
                 int y = (int) Math.round(car.getCurrY());
 
                 if (x >= 300) {
+                    car.setCurrX(299);
+                    car.turnLeft();
+                    car.turnLeft();
+                    IO.println(car.getCurrX());
+                }
+                else if (x <= 0) {
+                    car.setCurrX(1);
                     car.turnLeft();
                     car.turnLeft();
                 }
-                if (y>=300) {
+                else if (y >= 300) {
+                    car.setCurrY(299);
+                    car.turnRight();
+                    car.turnRight();
+                }
+                else if (y <= 0) {
+                    car.setCurrY(1);
                     car.turnRight();
                     car.turnRight();
                 }

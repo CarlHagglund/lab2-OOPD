@@ -135,7 +135,6 @@ public abstract class Car implements Movable {
         switch(currDir) {
             case RIGHT:
                 CurrX += currentSpeed;
-                IO.println(CurrX);
                 IO.println("nu åker vi höger");
                 break;
             case LEFT:
@@ -143,11 +142,11 @@ public abstract class Car implements Movable {
                 IO.println("Nu åker vi vänster");
                 break;
             case UP:
-                CurrY += getCurrentSpeed();
+                CurrY -= getCurrentSpeed();
                 IO.println("nu åker vi upp");
                 break;
             case DOWN:
-                CurrY -= getCurrentSpeed();
+                CurrY += getCurrentSpeed();
                 IO.println("nu åker vi ner");
                 break;
         }
@@ -155,33 +154,25 @@ public abstract class Car implements Movable {
 
     @Override
     public void turnLeft() {
-        if (currDir == Direction.RIGHT) {
-            currDir = Direction.UP;
+
+        switch(currDir) {
+            case RIGHT: currDir = currDir.UP; break;
+            case UP: currDir = currDir.LEFT; break;
+            case LEFT: currDir = currDir.DOWN; break;
+            case DOWN: currDir = currDir.RIGHT; break;
         }
-        if (currDir == Direction.UP) {
-            currDir = Direction.LEFT;
-        }
-        if (currDir == Direction.LEFT) {
-            currDir = Direction.DOWN;
-        }
-        if (currDir == Direction.DOWN) {
-            currDir = Direction.RIGHT;
-        }
+
     }
     @Override
     public void turnRight() {
-        if (currDir == Direction.RIGHT) {
-            currDir = Direction.DOWN;
+
+        switch(currDir) {
+            case RIGHT: currDir = currDir.DOWN; break;
+            case DOWN: currDir = currDir.LEFT; break;
+            case LEFT: currDir = currDir.UP; break;
+            case UP: currDir = currDir.RIGHT; break;
         }
-        if (currDir == Direction.DOWN) {
-            currDir = Direction.LEFT;
-        }
-        if (currDir == Direction.LEFT) {
-            currDir = Direction.UP;
-        }
-        if (currDir == Direction.UP) {
-            currDir = Direction.RIGHT;
-        }
+
     }
 
 
