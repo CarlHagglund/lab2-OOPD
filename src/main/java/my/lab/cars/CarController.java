@@ -49,14 +49,16 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getCurrX());
                 int y = (int) Math.round(car.getCurrY());
-                if (x >= 300) {
 
+                if (x >= 300) {
+                    car.turnLeft();
                     car.turnLeft();
                 }
                 if (y>=300) {
                     car.turnRight();
                     car.turnRight();
                 }
+
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();

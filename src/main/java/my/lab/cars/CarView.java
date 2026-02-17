@@ -108,7 +108,6 @@ public class CarView extends JFrame{
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IO.println("Nu gasar vi!");
                 carC.gas(gasAmount);
             }
         });
@@ -123,7 +122,6 @@ public class CarView extends JFrame{
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IO.println("Nu startar vi!");
                 carC.start();
             }
         });

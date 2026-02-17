@@ -136,26 +136,52 @@ public abstract class Car implements Movable {
             case RIGHT:
                 CurrX += currentSpeed;
                 IO.println(CurrX);
+                IO.println("nu åker vi höger");
+                break;
             case LEFT:
                 CurrX -= getCurrentSpeed();
+                IO.println("Nu åker vi vänster");
+                break;
             case UP:
                 CurrY += getCurrentSpeed();
+                IO.println("nu åker vi upp");
+                break;
             case DOWN:
                 CurrY -= getCurrentSpeed();
-
-
+                IO.println("nu åker vi ner");
+                break;
         }
     }
 
-
     @Override
     public void turnLeft() {
-        currDir = Direction.LEFT;
+        if (currDir == Direction.RIGHT) {
+            currDir = Direction.UP;
+        }
+        if (currDir == Direction.UP) {
+            currDir = Direction.LEFT;
+        }
+        if (currDir == Direction.LEFT) {
+            currDir = Direction.DOWN;
+        }
+        if (currDir == Direction.DOWN) {
+            currDir = Direction.RIGHT;
+        }
     }
-
     @Override
     public void turnRight() {
-        currDir = Direction.RIGHT;
+        if (currDir == Direction.RIGHT) {
+            currDir = Direction.DOWN;
+        }
+        if (currDir == Direction.DOWN) {
+            currDir = Direction.LEFT;
+        }
+        if (currDir == Direction.LEFT) {
+            currDir = Direction.UP;
+        }
+        if (currDir == Direction.UP) {
+            currDir = Direction.RIGHT;
+        }
     }
 
 
