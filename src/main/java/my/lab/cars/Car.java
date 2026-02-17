@@ -129,6 +129,7 @@ public abstract class Car implements Movable {
         } else if (IsTurningRight) {
             CurrY += getCurrentSpeed();
         }
+        IO.println(CurrX + CurrY);
 
     }
 
