@@ -13,8 +13,14 @@ public abstract class Car implements Movable {
     private String modelName; // The car model name
     private int weight;
 
-    private boolean IsTurningLeft;
-    private boolean IsTurningRight;
+    enum Direction {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    }
+    //private boolean IsTurningLeft;
+    //private boolean IsTurningRight;
     private double CurrX;
     private double CurrY;
 
@@ -24,9 +30,13 @@ public abstract class Car implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.weight = weight;
+        //Direction currDir = Direction.RIGHT;
+    //this.IsTurningLeft = false;
+        //this.IsTurningRight = false;
         stopEngine(); // set the moving speed to 0
 
     }
+    Direction currDir = Direction.RIGHT;
 
     public void setCurrX(double amount) {CurrX = amount;}
 
@@ -121,28 +131,33 @@ public abstract class Car implements Movable {
 
     @Override
     public void move() {
-        if (IsTurningLeft) {
-            CurrX += getCurrentSpeed();
-        } else if (IsTurningRight) {
-            CurrY += getCurrentSpeed();
-        }
-        CurrX += getCurrentSpeed();
-        //IO.println(CurrX + CurrY);
 
+        switch(currDir) {
+            case RIGHT:
+                CurrX += currentSpeed;
+                IO.println(CurrX);
+            case LEFT:
+                CurrX -= getCurrentSpeed();
+            case UP:
+                CurrY += getCurrentSpeed();
+            case DOWN:
+                CurrY -= getCurrentSpeed();
+
+
+        }
     }
+
 
     @Override
     public void turnLeft() {
-        IsTurningLeft = true;
-        IsTurningRight = false;
+        currDir = Direction.LEFT;
     }
 
     @Override
     public void turnRight() {
-        IsTurningRight = true;
-        IsTurningLeft = false;
-
+        currDir = Direction.RIGHT;
     }
+
 
 
 }
