@@ -70,7 +70,6 @@ public abstract class Car implements Movable {
         return CurrY;
     }
 
-
     public double speedFactor() {
         return enginePower * 0.01;
     }
@@ -100,7 +99,6 @@ public abstract class Car implements Movable {
         } else {
             throw new IllegalArgumentException("Speed " + currentSpeedtest + " is out of range!");
         }
-        // Samma som increment cred till Calle
     }
 
     public void gas(double amount) {
@@ -109,7 +107,7 @@ public abstract class Car implements Movable {
                     "amount must be between 0.0 and 1.0. " + amount
             );
         else incrementSpeed(amount);
-    } // lite samma visa här men om den inte raise:ar exception så kallas incrementSpeed()
+    }
 
     public void brake(double amount) {
         if (amount < 0.0 || amount > 1.0)
@@ -119,7 +117,6 @@ public abstract class Car implements Movable {
         else if (amount > currentSpeed)
             currentSpeed=0;
         else decrementSpeed(amount);
-        // Samma som innan men nu kallas decrementSpeed(), cred till mig, cool, Øhl osv <3
     }
 
     @Override
@@ -129,7 +126,8 @@ public abstract class Car implements Movable {
         } else if (IsTurningRight) {
             CurrY += getCurrentSpeed();
         }
-        IO.println(CurrX + CurrY);
+        CurrX += getCurrentSpeed();
+        //IO.println(CurrX + CurrY);
 
     }
 
