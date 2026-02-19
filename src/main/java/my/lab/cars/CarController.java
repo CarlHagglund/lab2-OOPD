@@ -24,12 +24,14 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
+    ICarWorkshop<Volvo240> volvoStation = new CarWorkshop<>(5, 300, 0);
 
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
+
 
         cc.cars.add(new Volvo240());
 
@@ -50,8 +52,8 @@ public class CarController {
                 int x = (int) Math.round(car.getCurrX());
                 int y = (int) Math.round(car.getCurrY());
 
-                if (x >= 300) {
-                    car.setCurrX(299);
+                if (x >= 700) {
+                    car.setCurrX(699);
                     car.turnLeft();
                     car.turnLeft();
                     IO.println(car.getCurrX());
@@ -60,9 +62,8 @@ public class CarController {
                     car.setCurrX(1);
                     car.turnLeft();
                     car.turnLeft();
-                }
-                else if (y >= 300) {
-                    car.setCurrY(299);
+                } else if (y >= 560) {
+                    car.setCurrY(559);
                     car.turnRight();
                     car.turnRight();
                 }
@@ -72,7 +73,7 @@ public class CarController {
                     car.turnRight();
                 }
 
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(x, y, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }

@@ -5,19 +5,20 @@ import java.awt.*;
 
 public class Scania extends Car implements Movable {
 
-    private int CurrFlatbedAngle;
+    private boolean flatbedLifted;
 
     public Scania() {
         super(2, Color.red, 770, "Scania", 30000);
-        this.CurrFlatbedAngle = 0;
+        this.flatbedLifted = false;
+        this.setCurrY(200);
     }
 
     @Override
     public void move() {
-        if (CurrFlatbedAngle == 0) {
+        if (!flatbedLifted) {
             super.move();
         }
-        else IO.println("Flatbed is not lowered! Flatbed angle must be 0");
+        else this.stopEngine();
     }
     @Override
     public void turnLeft() {
@@ -28,19 +29,17 @@ public class Scania extends Car implements Movable {
         super.turnRight();
     }
 
-    public void ChangeFlatbedAngle(int amount) {
+    public void liftFlatbed() {
         if (super.getCurrentSpeed() != 0) {
             IO.println("Truck is moving, can't change flatbed angle");
             }
-        else if (amount < 0 || amount > 70) {
-            throw new IllegalArgumentException(
-                    "Value must be between 0 and 70");
-            }
-        else CurrFlatbedAngle = amount;
+        else flatbedLifted = true;
 
-}
-    public double getCurrFlatbedAngle() {
-        return CurrFlatbedAngle;
     }
-
+    public void lowerFlatbed() {
+        if (super.getCurrentSpeed() != 0) {
+            IO.println("Truck is moving, can't change flatbed angle");
+        }
+        else flatbedLifted = false;
+    }
 }

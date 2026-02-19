@@ -4,6 +4,7 @@ import java.awt.*;
 
 public abstract class Car implements Movable {
 
+
     // Privata för att de inte ska kunna förändras eller kallas på direkt. Säkerhet
 
     private int nrDoors; // Number of doors on the car
@@ -34,6 +35,8 @@ public abstract class Car implements Movable {
     //this.IsTurningLeft = false;
         //this.IsTurningRight = false;
         stopEngine(); // set the moving speed to 0
+        this.CurrX = 0;
+        this.CurrY = 0;
 
     }
     Direction currDir = Direction.RIGHT;
@@ -135,19 +138,19 @@ public abstract class Car implements Movable {
         switch(currDir) {
             case RIGHT:
                 CurrX += currentSpeed;
-                IO.println("nu åker vi höger");
+                //IO.println("nu åker vi höger");
                 break;
             case LEFT:
                 CurrX -= getCurrentSpeed();
-                IO.println("Nu åker vi vänster");
+                //IO.println("Nu åker vi vänster");
                 break;
             case UP:
                 CurrY -= getCurrentSpeed();
-                IO.println("nu åker vi upp");
+                //IO.println("nu åker vi upp");
                 break;
             case DOWN:
                 CurrY += getCurrentSpeed();
-                IO.println("nu åker vi ner");
+                //IO.println("nu åker vi ner");
                 break;
         }
     }
