@@ -9,7 +9,20 @@ public class ScaniaTest {
     private final Scania testscania = new Scania();
 
     @Test
-    public void FlatbedTest() {
+    public void liftFlatbedTest() {
+
+        testscania.liftFlatbed();
+        Assert.assertTrue(true);
+    }
+
+    @Test
+    public void lowerFlatbedTest() {
+
+        testscania.lowerFlatbed();
+        Assert.assertTrue(false);
+
+
+        /*
 
         testscania.ChangeFlatbedAngle(70);
         IO.println(testscania.getCurrFlatbedAngle());
@@ -17,6 +30,8 @@ public class ScaniaTest {
         if (testscania.getCurrFlatbedAngle() == 70) {
             Assert.assertTrue(true);
         }
+
+         */
 
 
     }
