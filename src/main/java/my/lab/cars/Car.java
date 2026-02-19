@@ -13,6 +13,9 @@ public abstract class Car implements Movable {
     private Color color; // Color of the car
     private String modelName; // The car model name
     private int weight;
+    private double CurrX;
+    private double CurrY;
+    private Direction currDir;;
 
     enum Direction {
         LEFT,
@@ -20,10 +23,7 @@ public abstract class Car implements Movable {
         UP,
         DOWN
     }
-    //private boolean IsTurningLeft;
-    //private boolean IsTurningRight;
-    private double CurrX;
-    private double CurrY;
+
 
     public Car(int nrDoors, Color color, double enginePower, String modelName, int weight) {
         this.nrDoors = nrDoors;
@@ -31,15 +31,14 @@ public abstract class Car implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.weight = weight;
-        //Direction currDir = Direction.RIGHT;
-    //this.IsTurningLeft = false;
-        //this.IsTurningRight = false;
+        this.currDir = Direction.RIGHT;
         stopEngine(); // set the moving speed to 0
         this.CurrX = 0;
         this.CurrY = 0;
 
     }
-    Direction currDir = Direction.RIGHT;
+
+
 
     public void setCurrX(double amount) {CurrX = amount;}
 
@@ -78,7 +77,7 @@ public abstract class Car implements Movable {
     public double getCurrX() {
         return CurrX;
     }
-    // två getter funktioner bara :)
+
     public double getCurrY() {
         return CurrY;
     }
@@ -98,7 +97,6 @@ public abstract class Car implements Movable {
             throw new IllegalArgumentException("Speed " + currentSpeedtest + " is out of range!");
         }
 
-        // Denna kallas för att öka farten på bilen. Den skall raise:a error om kriteriet ej uppfylls.
 
     }
 

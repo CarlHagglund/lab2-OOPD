@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 
 public class CarController {
     // member fields:
-
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
@@ -34,21 +34,27 @@ public class CarController {
 
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new Scania());
+
+
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
-
-        // Start the timer
         cc.timer.start();
+
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-           for (Car car : cars) {
+            //for (Car car : cars) {
+            for (int i = cars.size() - 1; i >= 0; i--) {
+                Car car = cars.get(i);
                 car.move();
+
                 int x = (int) Math.round(car.getCurrX());
                 int y = (int) Math.round(car.getCurrY());
 
@@ -57,8 +63,7 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
                     IO.println(car.getCurrX());
-                }
-                else if (x <= 0) {
+                } else if (x <= 0) {
                     car.setCurrX(1);
                     car.turnLeft();
                     car.turnLeft();
@@ -66,11 +71,16 @@ public class CarController {
                     car.setCurrY(559);
                     car.turnRight();
                     car.turnRight();
-                }
-                else if (y <= 0) {
+                } else if (y <= 0) {
                     car.setCurrY(1);
                     car.turnRight();
                     car.turnRight();
+                }
+                else if (volvoStation.checkProximity(car,car instanceof Volvo240)){
+                    assert car instanceof Volvo240;
+                    volvoStation.accept((Volvo240) car);
+                    car.stopEngine();
+                    cars.remove(car);
                 }
 
                 frame.drawPanel.moveit(x, y, car);
@@ -82,25 +92,62 @@ public class CarController {
 
     // Calls the gas method for each car once
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
-       for (Car car : cars) {
+        for (Car car : cars) {
+            double gas = ((double) amount) / 100;
             car.gas(gas);
         }
     }
+
     void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
             car.brake(brake);
         }
     }
+
     void start() {
         for (Car car : cars) {
             car.startEngine();
         }
     }
+
     void stop() {
         for (Car car : cars) {
             car.stopEngine();
         }
     }
+
+    void turboOn() {
+        for (Car car : cars)
+            if (car instanceof Saab95 saab) {
+                saab.setTurboOn();
+            }
+    }
+
+    void turboOff() {
+        for (Car car : cars)
+            if (car instanceof Saab95 saab) {
+                saab.setTurboOff();
+            }
+    }
+
+    void liftBed() {
+        for (Car car : cars) {
+            if (car instanceof Scania scania) {
+                scania.liftFlatbed();
+            }
+        }
+    }
+    void lowerBed() {
+        for (Car car : cars) {
+            if (car instanceof Scania scania) {
+                scania.lowerFlatbed();
+            }
+        }
+    }
+
+
 }
+
+
+

@@ -10,6 +10,8 @@ public class Saab95 extends Car {
         super(2, Color.red, 125, "Saab95", 1700);
         this.turbo = 1.0;
         this.turboOn = false;
+        this.setCurrY(100);
+
     }
 
     public void move() {
@@ -23,12 +25,13 @@ public class Saab95 extends Car {
     public void turnRight() {
         super.turnRight();
     }
-    public void setTurboOn() {
-        turboOn = true;
-    }
+
+    public void setTurboOn() {turboOn = true;}
+
     public void setTurboOff() {
         turboOn = false;
     }
+
     @Override
     public double speedFactor() {
         if (turboOn) turbo = 1.3;

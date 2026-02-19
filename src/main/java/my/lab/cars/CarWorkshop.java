@@ -4,15 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CarWorkshop<T extends Car> {
-
-    private int maxCapacity;
+public class CarWorkshop<T extends Car> implements ICarWorkshop<T> {
+    private final int maxCapacity;
     private List<T> cars;
+    private double currX;
+    private double currY;
 
+    public CarWorkshop(int maxCapacity, double currX, double currY) {
+        this.maxCapacity = maxCapacity;
+        this.cars = new ArrayList<>();
+        this.currX = currX;
+        this.currY = currY;
+
+    }
+
+
+
+    /*
     public CarWorkshop(int maxCapacity) {
         this.maxCapacity = maxCapacity;
         this.cars = new ArrayList<>();
-
     }
 
     public void cartoWorkshop(T car) {
