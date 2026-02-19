@@ -6,7 +6,7 @@ public class Saab95 extends Car {
     private boolean turboOn;
     private double turbo;
 
-    public Saab95() {
+    public Saab95(){
         super(2, Color.red, 125, "Saab95", 1700);
         this.turbo = 1.0;
         this.turboOn = false;
