@@ -4,9 +4,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarTransport extends Car implements Movable {
+public class CarTransport extends Car implements IMovable {
 
-    public boolean Ramp;
+    protected boolean Ramp;
     private static int MAX_LOAD = 10;
     List<Car> LoadedCars = new ArrayList<>();
 

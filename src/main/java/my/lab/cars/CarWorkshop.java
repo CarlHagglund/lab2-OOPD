@@ -7,14 +7,14 @@ import java.util.List;
 public class CarWorkshop<T extends Car> implements ICarWorkshop<T> {
     private final int maxCapacity;
     private List<T> cars;
-    private double currX;
-    private double currY;
+    private double CurrX;
+    private double CurrY;
 
     public CarWorkshop(int maxCapacity, double currX, double currY) {
         this.maxCapacity = maxCapacity;
         this.cars = new ArrayList<>();
-        this.currX = currX;
-        this.currY = currY;
+        this.CurrX = currX;
+        this.CurrY = currY;
 
     }
 
@@ -67,12 +67,12 @@ public class CarWorkshop<T extends Car> implements ICarWorkshop<T> {
 
     @Override
     public double getCurrX() {
-        return currX;
+        return CurrX;
     }
 
     @Override
     public double getCurrY() {
-        return currY;
+        return CurrY;
     }
 
     @Override

@@ -3,7 +3,7 @@ package my.lab.cars;
 import java.awt.*;
 
 
-public class Scania extends Car implements Movable {
+public class Scania extends Car implements IMovable {
 
     private boolean flatbedLifted;
 

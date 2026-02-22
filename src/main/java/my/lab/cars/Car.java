@@ -2,7 +2,7 @@ package my.lab.cars;
 
 import java.awt.*;
 
-public abstract class Car implements Movable {
+public abstract class Car implements IMovable {
 
 
     // Privata för att de inte ska kunna förändras eller kallas på direkt. Säkerhet
@@ -15,7 +15,7 @@ public abstract class Car implements Movable {
     private int weight;
     private double CurrX;
     private double CurrY;
-    private Direction currDir;;
+    private Direction CurrDir;;
 
     enum Direction {
         LEFT,
@@ -31,7 +31,7 @@ public abstract class Car implements Movable {
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.weight = weight;
-        this.currDir = Direction.RIGHT;
+        this.CurrDir = Direction.RIGHT;
         stopEngine(); // set the moving speed to 0
         this.CurrX = 0;
         this.CurrY = 0;
@@ -40,9 +40,9 @@ public abstract class Car implements Movable {
 
 
 
-    public void setCurrX(double amount) {CurrX = amount;}
+    protected void setCurrX(double amount) {CurrX = amount;}
 
-    public void setCurrY(double amount) {CurrY = amount;}
+    protected void setCurrY(double amount) {CurrY = amount;}
 
     public int getNrDoors() {
         return nrDoors;
@@ -133,7 +133,7 @@ public abstract class Car implements Movable {
     @Override
     public void move() {
 
-        switch(currDir) {
+        switch(CurrDir) {
             case RIGHT:
                 CurrX += currentSpeed;
                 //IO.println("nu åker vi höger");
@@ -156,22 +156,22 @@ public abstract class Car implements Movable {
     @Override
     public void turnLeft() {
 
-        switch(currDir) {
-            case RIGHT: currDir = currDir.UP; break;
-            case UP: currDir = currDir.LEFT; break;
-            case LEFT: currDir = currDir.DOWN; break;
-            case DOWN: currDir = currDir.RIGHT; break;
+        switch(CurrDir) {
+            case RIGHT: CurrDir = CurrDir.UP; break;
+            case UP: CurrDir = CurrDir.LEFT; break;
+            case LEFT: CurrDir = CurrDir.DOWN; break;
+            case DOWN: CurrDir = CurrDir.RIGHT; break;
         }
 
     }
     @Override
     public void turnRight() {
 
-        switch(currDir) {
-            case RIGHT: currDir = currDir.DOWN; break;
-            case DOWN: currDir = currDir.LEFT; break;
-            case LEFT: currDir = currDir.UP; break;
-            case UP: currDir = currDir.RIGHT; break;
+        switch(CurrDir) {
+            case RIGHT: CurrDir = CurrDir.DOWN; break;
+            case DOWN: CurrDir = CurrDir.LEFT; break;
+            case LEFT: CurrDir = CurrDir.UP; break;
+            case UP: CurrDir = CurrDir.RIGHT; break;
         }
 
     }

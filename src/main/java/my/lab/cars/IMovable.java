@@ -1,6 +1,6 @@
 package my.lab.cars;
 
-public interface Movable {
+public interface IMovable {
     void move();
     void turnLeft();
     void turnRight();

@@ -1,0 +1,10 @@
+1. CarController har för många ansvarsområden, vilket gör att SRP inte uppfylls.
+Vi ska försöka skapa en ny klass som sköter timern och rörelselogik.
+CarController ska endast vara en brygga mellan CarView och DrawPanel
+
+2. DrawPanel är inte tillräckligt generisk vilket leder till att vi inte har en coupling design
+moveit() ska göras generisk eftersom den kollar endast instanceof just nu.
+Ska försöka göra den generisk med index eller map kanske?
+
+3. CarView och CarController har för hög coupling och CarController.
+Lägg till en metod så att man gör att CarController endast kommunicerar med CarView.
