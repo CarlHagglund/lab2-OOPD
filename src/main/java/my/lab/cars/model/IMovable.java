@@ -1,0 +1,9 @@
+package my.lab.cars.model;
+
+public interface IMovable {
+    void move();
+    void turnLeft();
+    void turnRight();
+
+}
+

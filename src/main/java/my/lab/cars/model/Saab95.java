@@ -1,0 +1,43 @@
+package my.lab.cars.model;
+
+import java.awt.*;
+
+public class Saab95 extends Car implements ITurbo {
+    private boolean turboOn;
+    private double turbo;
+
+    public Saab95(){
+        super(2, Color.red, 125, "Saab95", 1700);
+        this.turbo = 1.0;
+        this.turboOn = false;
+        this.setCurrY(100);
+
+    }
+
+    public void move() {
+        super.move();
+    }
+
+    public void turnLeft() {
+        super.turnLeft();
+    }
+
+    public void turnRight() {
+        super.turnRight();
+    }
+
+    @Override
+    public void setTurboOn() {turboOn = true;}
+
+    @Override
+    public void setTurboOff() {
+        turboOn = false;
+    }
+
+    @Override
+    public double speedFactor() {
+        if (turboOn) turbo = 1.3;
+        return super.speedFactor()*turbo;
+    }
+
+}

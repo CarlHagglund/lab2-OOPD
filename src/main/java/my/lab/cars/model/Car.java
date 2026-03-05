@@ -1,0 +1,177 @@
+package my.lab.cars.model;
+
+import java.awt.*;
+
+public abstract class Car implements IMovable {
+
+
+    // Privata för att de inte ska kunna förändras eller kallas på direkt. Säkerhet
+
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
+    private int weight;
+    private double CurrX;
+    private double CurrY;
+    private Direction CurrDir;;
+
+    enum Direction {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    }
+
+
+    public Car(int nrDoors, Color color, double enginePower, String modelName, int weight) {
+        this.nrDoors = nrDoors;
+        this.color = color;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
+        this.weight = weight;
+        this.CurrDir = Direction.RIGHT;
+        stopEngine(); // set the moving speed to 0
+        this.CurrX = 0;
+        this.CurrY = 0;
+
+    }
+
+
+
+    public void setCurrX(double amount) {CurrX = amount;}
+
+    public void setCurrY(double amount) {CurrY = amount;}
+
+    public int getNrDoors() {
+        return nrDoors;
+    }
+
+    public double getEnginePower() {
+        return enginePower;
+    }
+
+    public double getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getWeight() {return weight;}
+
+    public void setColor(Color clr) {
+        color = clr;
+    }
+
+    public void startEngine() {
+        currentSpeed = 0.1;
+    }
+
+    public void stopEngine() {
+        currentSpeed = 0;
+    }
+
+    public double getCurrX() {
+        return CurrX;
+    }
+
+    public double getCurrY() {
+        return CurrY;
+    }
+
+    public double speedFactor() {
+        return enginePower * 0.01;
+    }
+
+    public void incrementSpeed(double amount) {
+        double currentSpeedtest = getCurrentSpeed() + speedFactor() * amount;
+
+        if (currentSpeedtest >= 0 && currentSpeedtest <= enginePower) {
+            currentSpeed = currentSpeedtest;
+
+        } else {
+
+            throw new IllegalArgumentException("Speed " + currentSpeedtest + " is out of range!");
+        }
+
+
+    }
+
+    public void decrementSpeed(double amount) {
+
+        double currentSpeedtest = getCurrentSpeed() - speedFactor() * amount;
+
+        if (currentSpeedtest >= 0 && currentSpeedtest <= enginePower) {
+            currentSpeed = currentSpeedtest;
+
+        } else {
+            throw new IllegalArgumentException("Speed " + currentSpeedtest + " is out of range!");
+        }
+    }
+
+    public void gas(double amount) {
+        if (amount < 0.0 || amount > 1.0)
+            throw new IllegalArgumentException(
+                    "amount must be between 0.0 and 1.0. " + amount
+            );
+        else incrementSpeed(amount);
+    }
+
+    public void brake(double amount) {
+        if (amount < 0.0 || amount > 1.0)
+            throw new IllegalArgumentException(
+                    "amount must be between 0.0 and 1.0. and can't be greater than current speed "
+            );
+        else if (amount > currentSpeed)
+            currentSpeed=0;
+        else decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+
+        switch(CurrDir) {
+            case RIGHT:
+                CurrX += currentSpeed;
+                //IO.println("nu åker vi höger");
+                break;
+            case LEFT:
+                CurrX -= getCurrentSpeed();
+                //IO.println("Nu åker vi vänster");
+                break;
+            case UP:
+                CurrY -= getCurrentSpeed();
+                //IO.println("nu åker vi upp");
+                break;
+            case DOWN:
+                CurrY += getCurrentSpeed();
+                //IO.println("nu åker vi ner");
+                break;
+        }
+    }
+
+    @Override
+    public void turnLeft() {
+
+        switch(CurrDir) {
+            case RIGHT: CurrDir = CurrDir.UP; break;
+            case UP: CurrDir = CurrDir.LEFT; break;
+            case LEFT: CurrDir = CurrDir.DOWN; break;
+            case DOWN: CurrDir = CurrDir.RIGHT; break;
+        }
+
+    }
+    @Override
+    public void turnRight() {
+
+        switch(CurrDir) {
+            case RIGHT: CurrDir = CurrDir.DOWN; break;
+            case DOWN: CurrDir = CurrDir.LEFT; break;
+            case LEFT: CurrDir = CurrDir.UP; break;
+            case UP: CurrDir = CurrDir.RIGHT; break;
+        }
+    }
+}

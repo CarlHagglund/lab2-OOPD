@@ -1,12 +1,11 @@
-import my.lab.cars.CarController;
-import my.lab.cars.CarView;
-import my.lab.cars.CarWorkshop;
-import my.lab.cars.Volvo240;
+import my.lab.cars.controller.CarController;
+import my.lab.cars.view.CarView;
 
 void main() {
 
     String[] args = {};
-    CarController cc = new CarController();
+    CarController cc;
+    cc = new CarController();
     CarView carView = new CarView("mycar", cc);
     cc.main(args);
 

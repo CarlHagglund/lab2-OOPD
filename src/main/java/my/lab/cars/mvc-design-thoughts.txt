@@ -1,0 +1,23 @@
+MVC implementation thoughts:
+1. First implementation of MVC given to us was sloppy and did not line up with the ideal design of a MVC implementation.
+2. The whole point of separating MVC is to improve the codes organization, maintainability and debugging.
+Each class handles specific responsibility's.
+
+
+Design patterns:
+Observer pattern:
+tightly coupled with subjects holding direct references to its observer.
+In this case it is CarLogic with CarController, where CarController holds direct references.
+
+Factory Method: We have made a create() and destory() method which is used in the GUI, create() creates random cars,
+destroy() removes the last Car in the list.
+It would increase scalability, extendability
+and usability.
+
+State: We are not using a state design pattern,
+this would change the entire design of our car classes and make a refactor crazy.
+
+Composite: Composite is used as the structure for the lab, this was intentional as we wanted Car as a "godclass".
+This means that all the subclasses implements Car and therefor creates a tree structure. Although the subclasses
+can still be worked with as individual objects
+
